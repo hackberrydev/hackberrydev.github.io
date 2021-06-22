@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Validate Your YAML Files</title>
+
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+    <link href="/stylesheets/code.css" rel="stylesheet" />
+    <script src="/javascripts/site.js"></script>
+  </head>
+  <body>
+    <div class="content">
+      <p>
+        <a href="/">Home</a>
+      </p>
+
+      <h1>Validate Your YAML Files</h1>
+
+      <p>By <span class="author">Nebojsa Stricevic</span></p>
+
+      <p>A few months ago, a client project we&rsquo;re working on started using
+<a href="https://github.com/Moove-it/sidekiq-scheduler">sidekiq-scheduler</a> for handling
+scheduled jobs. The tool works well and we started migrating more and more Cron
+jobs to Sidekiq.</p>
+
+<p>A few days ago, after deploying a new set of jobs, we scheduled a few of them to
+test if everything works in production. But, we realized that no jobs were being
+logged in the Sidekiq log file. Since Sidekiq is managed by systemd, we
+inspected the status of the service with <code>systemctl</code> and <code>journalctl</code> and found
+out that <code>sidekiq.yml</code> file is not a valid YAML file. That prevented Sidekiq
+from booting.</p>
+
+<p>This raised 2 important questions:</p>
+
+<ul>
+<li>How can we prevent deploying an invalid <code>sidekiq.yml</code> file to the server?</li>
+<li>How can we receive a notification when the Sidekiq service fails to start?</li>
+</ul>
+
+<p>As the first line of defence, we decided to implement a simple script to check
+if <code>sidekiq.yml</code> is a valid YAML file and to run the script as part of our
+Continuous Integration pipeline.</p>
+
+<p>After a few minutes, we had a working version of the script:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1">#!/usr/bin/env ruby</span>
+
+<span class="nb">require</span> <span class="s2">"yaml"</span>
+
+<span class="n">sidekiq_yml</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"config/sidekiq.yml"</span><span class="p">)</span>
+
+<span class="k">begin</span>
+  <span class="no">YAML</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">sidekiq_yml</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"sidekiq.yml is valid"</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+  <span class="nb">puts</span> <span class="s2">"sidekiq.yml is not valid"</span>
+  <span class="nb">puts</span> <span class="s2">"Error: </span><span class="si">#{</span><span class="n">ex</span><span class="p">.</span><span class="nf">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">exit</span> <span class="mi">1</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>The script works fine, but the name of the YAML file is hard-coded and is a bit
+verbose. The second version is a Ruby one-liner that&rsquo;s executed from a console:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">"require 'yaml'; YAML.load(</span><span class="se">\$</span><span class="s2">stdin.read);"</span> <span class="o">&lt;</span> <span class="n">sidekiq</span><span class="p">.</span><span class="nf">yml</span>
+</code></pre></div>
+<p>This simple one-liner doesn&rsquo;t solve all problems. It&rsquo;s still possible to deploy
+a file that contains a configuration that&rsquo;s not valid for a library or a
+service. In some cases, the library might validate the configuration. In others
+you might want to do that yourself. We&rsquo;re still working on a good solution for
+that problem. For now, the smoke test one-liner within a CI pipeline will do the
+trick.</p>
+
+<p>In following blog posts we&rsquo;re going to explore ways to monitor a Sidekiq service
+and notify developers if anything goes wrong.</p>
+
+<p>What&rsquo;s your solution for validating YAML files and other configuration?</p>
+
+<p>Thanks to <a href="mailto:vladimir@vladimirsaric.com">Vladimir Saric</a> for reviewing the
+blog post.</p>
+
+
+      <p>
+        Feel free to get in touch any time by
+        <a href="mailto:contact@hackberry.dev">sending us an email</a>.
+      </p>
+    </div>
+
+    <footer>
+      <small>
+        © 2016 – 2021 <span class="text-highlight-1">Hackberry</span>
+      </small>
+    </footer>
+  </body>
+</html>
