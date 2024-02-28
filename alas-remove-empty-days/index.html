@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>--remove-empty-days</title>
+
+    <link href="/style.css" rel="stylesheet" />
+    <link href="/stylesheets/code.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class=" w-full max-w-4xl mx-auto">
+  <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-center md:flex-row md:px-6 lg:px-8">
+    <div class="flex flex-row items-center justify-between lg:justify-start">
+      <a href="/index.html" class="text-3xl font-bold tracking-tighter text-green-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
+          Alas by Hackberry
+      </a>
+      <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+          <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+          <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" style="display: none"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+    <div class="flex overflow-hidden bg-white rounded-lg">
+      <div class="flex flex-col w-64">
+  <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white border-r border-gray-50">
+    <div class="flex flex-col flex-grow px-4 mt-5">
+      <nav class="flex-1 space-y-1 bg-white">
+        <ul>
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-get-started">
+    <span class="ml-4">Get Started</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-format">
+    <span class="ml-4">Alas Format</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-contacts">
+    <span class="ml-4">Contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-editor">
+    <span class="ml-4">Editing Plan</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-exit-status">
+    <span class="ml-4">Exit Status</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-insert-days">
+    <span class="ml-4">--insert-days</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-insert-task">
+    <span class="ml-4">--insert-task</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-list-contacts">
+    <span class="ml-4">--list-contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-remove-empty-days">
+    <span class="ml-4">--remove-empty-days</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-report">
+    <span class="ml-4">--report</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-schedule-contacts">
+    <span class="ml-4">--schedule-contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-schedule-tasks">
+    <span class="ml-4">--schedule-tasks</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-skip-backup">
+    <span class="ml-4">--skip-backup</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-stats">
+    <span class="ml-4">--stats</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-version">
+    <span class="ml-4">--version</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-tips">
+    <span class="ml-4">Tips</span>
+  </a>
+</li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="flex flex-col flex-1 w-0 overflow-hidden">
+        <section>
+          <div class=" flex flex-col items-center px-5 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex flex-col w-full max-w-3xl mx-auto prose text-left prose-blue">
+              <div class="w-full mx-auto -mx-32">
+                <h2>--remove-empty-days</h2>
+
+                <p><code>alas --remove-empty-days</code> will remove past days that don&rsquo;t have any events or
+tasks from the plan.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre class="highlight shell"><code>alas <span class="nt">--remove-empty-days</span> plan.md
+</code></pre></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-white" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+
+  <div class="px-4 py-12 mx-auto bg-gray-50 max-w-7xl sm:px-6 lg:px-16">
+    <div class="flex flex-wrap items-baseline lg:justify-center">
+      <span class="mt-2 text-sm font-light text-gray-500">
+        Copyright © 2016 - 2024
+        Hackberry
+      </span>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

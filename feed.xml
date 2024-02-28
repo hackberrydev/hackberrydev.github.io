@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/</id>
+  <link href="http://blog.url.com/"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2020-04-22T02:00:00+02:00</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>Validate Your YAML Files</title>
+    <link rel="alternate" href="http://blog.url.com/2020/04/22/validate-your-yaml-files/"/>
+    <id>http://blog.url.com/2020/04/22/validate-your-yaml-files/</id>
+    <published>2020-04-22T02:00:00+02:00</published>
+    <updated>2023-04-27T07:25:40+02:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;A few months ago, a client project we&amp;rsquo;re working on started using
+&lt;a href="https://github.com/Moove-it/sidekiq-scheduler"&gt;sidekiq-scheduler&lt;/a&gt; for handling
+scheduled jobs. The tool works well and we started migrating more and more Cron
+jobs to Sidekiq.&lt;/p&gt;
+
+&lt;p&gt;A few days ago, after deploying a new set of jobs, we scheduled a few of them to
+test if everything works in production. But, we realized that no jobs were being
+logged in the Sidekiq log file. Since Sidekiq is managed by systemd, we
+inspected the status of the service with &lt;code&gt;systemctl&lt;/code&gt; and &lt;code&gt;journalctl&lt;/code&gt; and found
+out that &lt;code&gt;sidekiq.yml&lt;/code&gt; file is not a valid YAML file. That prevented Sidekiq
+from booting.&lt;/p&gt;
+
+&lt;p&gt;This raised 2 important questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How can we prevent deploying an invalid &lt;code&gt;sidekiq.yml&lt;/code&gt; file to the server?&lt;/li&gt;
+&lt;li&gt;How can we receive a notification when the Sidekiq service fails to start?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As the first line of defence, we decided to implement a simple script to check
+if &lt;code&gt;sidekiq.yml&lt;/code&gt; is a valid YAML file and to run the script as part of our
+Continuous Integration pipeline.&lt;/p&gt;
+
+&lt;p&gt;After a few minutes, we had a working version of the script:&lt;/p&gt;
+
+&lt;div class="not-prose my-5"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;#!/usr/bin/env ruby&lt;/span&gt;
+
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"yaml"&lt;/span&gt;
+
+&lt;span class="n"&gt;sidekiq_yml&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"config/sidekiq.yml"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;begin&lt;/span&gt;
+  &lt;span class="no"&gt;YAML&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sidekiq_yml&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"sidekiq.yml is valid"&lt;/span&gt;
+&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"sidekiq.yml is not valid"&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"Error: &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;message&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  &lt;span class="nb"&gt;exit&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The script works fine, but the name of the YAML file is hard-coded and is a bit
+verbose. The second version is a Ruby one-liner that&amp;rsquo;s executed from a console:&lt;/p&gt;
+
+&lt;div class="not-prose my-5"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;ruby&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="s2"&gt;"require 'yaml'; YAML.load(&lt;/span&gt;&lt;span class="se"&gt;\$&lt;/span&gt;&lt;span class="s2"&gt;stdin.read);"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;sidekiq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This simple one-liner doesn&amp;rsquo;t solve all problems. It&amp;rsquo;s still possible to deploy
+a file that contains a configuration that&amp;rsquo;s not valid for a library or a
+service. In some cases, the library might validate the configuration. In others
+you might want to do that yourself. We&amp;rsquo;re still working on a good solution for
+that problem. For now, the smoke test one-liner within a CI pipeline will do the
+trick.&lt;/p&gt;
+
+&lt;p&gt;What&amp;rsquo;s your solution for validating YAML files and other configuration?&lt;/p&gt;
+
+&lt;p&gt;Thanks to &lt;a href="mailto:vladimir@vladimirsaric.com"&gt;Vladimir Saric&lt;/a&gt; for reviewing the
+blog post.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

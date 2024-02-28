@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Alas Format</title>
+
+    <link href="/style.css" rel="stylesheet" />
+    <link href="/stylesheets/code.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class=" w-full max-w-4xl mx-auto">
+  <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-center md:flex-row md:px-6 lg:px-8">
+    <div class="flex flex-row items-center justify-between lg:justify-start">
+      <a href="/index.html" class="text-3xl font-bold tracking-tighter text-green-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
+          Alas by Hackberry
+      </a>
+      <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+          <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+          <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" style="display: none"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+    <div class="flex overflow-hidden bg-white rounded-lg">
+      <div class="flex flex-col w-64">
+  <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white border-r border-gray-50">
+    <div class="flex flex-col flex-grow px-4 mt-5">
+      <nav class="flex-1 space-y-1 bg-white">
+        <ul>
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-get-started">
+    <span class="ml-4">Get Started</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-format">
+    <span class="ml-4">Alas Format</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-contacts">
+    <span class="ml-4">Contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-editor">
+    <span class="ml-4">Editing Plan</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-exit-status">
+    <span class="ml-4">Exit Status</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-insert-days">
+    <span class="ml-4">--insert-days</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-insert-task">
+    <span class="ml-4">--insert-task</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-list-contacts">
+    <span class="ml-4">--list-contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-remove-empty-days">
+    <span class="ml-4">--remove-empty-days</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-report">
+    <span class="ml-4">--report</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-schedule-contacts">
+    <span class="ml-4">--schedule-contacts</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-schedule-tasks">
+    <span class="ml-4">--schedule-tasks</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-skip-backup">
+    <span class="ml-4">--skip-backup</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-stats">
+    <span class="ml-4">--stats</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-version">
+    <span class="ml-4">--version</span>
+  </a>
+</li>
+
+
+          <li>
+  <a class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50" href="/alas-tips">
+    <span class="ml-4">Tips</span>
+  </a>
+</li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="flex flex-col flex-1 w-0 overflow-hidden">
+        <section>
+          <div class=" flex flex-col items-center px-5 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex flex-col w-full max-w-3xl mx-auto prose text-left prose-blue">
+              <div class="w-full mx-auto -mx-32">
+                <h2>Alas Format</h2>
+
+                <p>Alas is using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> format with
+some constraints.</p>
+
+<p>The following example shows all special forms of the Alas plan file format.</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="gh"># My Plan</span>
+
+<span class="gu">## Inbox</span>
+<span class="p">
+-</span> [ ] Buy new sneakers
+<span class="p">-</span> [ ] #home - Fix the lamp
+<span class="p">-</span> [ ] #work - Schedule a meeting with the new administration person
+
+<span class="gu">## 2022-07-28, Thursday</span>
+<span class="p">
+-</span> [ ] Develop photos
+<span class="p">-</span> [X] Pay bills
+
+<span class="gu">## 2022-07-27, Wednesday</span>
+<span class="p">
+-</span> Met with Mike and Molly
+  They have a new apartment. It's closer to our place.
+<span class="p">-</span> [X] #work - Weekly meeting
+<span class="p">  -</span> Discuss slow tests
+<span class="p">  -</span> Should we migrate to a new server?
+<span class="p">-</span> [X] #work - Review open pull requests
+  Jane made 2 pull requests related to the billing system. Review those
+  carefully.
+<span class="p">-</span> [X] #work - Fix the flaky test
+</code></pre></div>
+<h2>Title</h2>
+
+<p>Each plan has a title with the plan name such as <code># My Plan</code>.</p>
+
+<h2>Inbox</h2>
+
+<p>After the title, there&rsquo;s the optional inbox section that starts with <code>## Inbox</code>.
+The inbox section has tasks, but it can also be empty.</p>
+
+<h2>Days</h2>
+
+<p>Each day starts with a day title, optionally followed by events, optionally
+followed by tasks. Events and tasks can&rsquo;t be mixed.</p>
+
+<p>A day starts with the date title in the following form - the title mark (<code>##</code>),
+followed by a date in the following form <code>YYYY-MM-DD</code>, followed by a comma,
+followed by a day name (<code>Monday</code>, <code>Tuesday</code>, etc.)</p>
+
+<p>For example:</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="gu">## 2022-07-28, Thursday</span>
+</code></pre></div>
+<h2>Events</h2>
+
+<p>Each event starts with a dash (<code>-</code>), followed by an event title, optionally
+followed by an event body.</p>
+
+<p>They are used to log stuff that happened that you want to remember.</p>
+
+<p>The following event has only a title:</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="p">-</span> Met with Mike and Molly
+</code></pre></div>
+<p>The following 2 events have a body. A body is optional. A body is all text that
+follows the event title and it&rsquo;s indented 2 spaces. It can, but it doesn&rsquo;t have
+to start with a dash or some other symbol.</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="p">-</span> Saw a wryneck
+  I was suprised to see a wryneck. They shouldn't get back for another month.
+  I guess that's because it's so hot this year.
+<span class="p">-</span> Jane called me today
+<span class="p">  -</span> They have a dog
+<span class="p">  -</span> They plan a trip in May
+</code></pre></div>
+<h2>Tasks</h2>
+
+<p>Each task starts with a dash (<code>-</code>), followed by a checkbox (<code>[ ]</code> or <code>[X]</code>),
+followed by a task title, optionally followed by a task body.</p>
+
+<p>This task has an unchecked checkbox, which means it&rsquo;s uncompleted:</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="p">-</span> [ ] Buy new sneakers
+</code></pre></div>
+<p>The following task is completed. It also shows that <code>#work - Fix the flaky test</code>
+is a valid title. The title has a tag (<code>#work</code>). At the moment of writing,
+tags don&rsquo;t have a special meaning in Alas, but you can use them to organize
+your tasks.</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="p">-</span> [X] #work - Fix the flaky test
+</code></pre></div>
+<p>The following 2 tasks have a body. A body is optional. A body is all text that
+follows the task title and it&rsquo;s indented 2 spaces. It can, but it doesn&rsquo;t have
+to start with a dash or some other symbol.</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="p">-</span> [X] #work - Weekly meeting
+<span class="p">  -</span> Discuss slow tests
+<span class="p">  -</span> Should we migrate to a new server?
+<span class="p">-</span> [X] #work - Review open pull requests
+  Jane made 2 pull requests related to the billing system. Review those
+  carefully.
+</code></pre></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-white" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+
+  <div class="px-4 py-12 mx-auto bg-gray-50 max-w-7xl sm:px-6 lg:px-16">
+    <div class="flex flex-wrap items-baseline lg:justify-center">
+      <span class="mt-2 text-sm font-light text-gray-500">
+        Copyright © 2016 - 2024
+        Hackberry
+      </span>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
